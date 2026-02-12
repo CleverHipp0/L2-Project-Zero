@@ -1,26 +1,16 @@
-def not_blank(element):
-    """Checks whether an answer is not blank."""
-
-    # Checks the length of the answer and outputs an error if it is too short.
-    if len(element.strip()) > 0:
-        return element
-    else:
-        return "xxx"
-
-
-def yes_no(inquiry):
+def string_checker(inquiry, tolerable_answers=("yes", "no", "y", "n")):
     """Asks a yes or no question and requires a yes or no response."""
-
-    # Sets up a list of tolerable answers.
-    tolerable_answers = ["yes", "no", "y", "n"]
 
     # Repeats asking until it is answered appropriately with "yes" or "no".
     while True:
-        result = not_blank(input(inquiry).lower())
+        result = input(inquiry).lower()
 
         # If the result is in tolerable answers then return the first letter of the response.
         if result in tolerable_answers:
             return result[0]
+
+        elif len(result) == 1 and result[0] == tolerable_answers[0][0]:
+            pass
 
         else:
             # Error message for iff a mistake is made.
@@ -28,8 +18,6 @@ def yes_no(inquiry):
 
 
 # Main routine goes here
+string_checker("Do you like cheese? ", ("yes", "no", "maybe"))
 
-if yes_no("Do you like com sci? ") == "no":
-    print("Wrong answer")
-else:
-    print("Correct")
+
